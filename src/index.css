@@ -1,8 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* MPL Design System - Gaming-inspired colors and gradients */
 
 @layer base {
   :root {
@@ -36,20 +37,25 @@
 
     --radius: 0.5rem;
 
+    /* MPL Gaming Colors */
+    --mpl-red: 349 86% 48%;
+    --mpl-red-dark: 349 86% 38%;
+    --mpl-red-light: 349 86% 58%;
+    --mpl-orange: 24 100% 50%;
+    --mpl-purple: 273 74% 58%;
+    --mpl-blue: 217 91% 60%;
+    --mpl-green: 142 71% 45%;
+    --mpl-dark: 240 10% 10%;
+    --mpl-dark-light: 240 8% 15%;
+    --mpl-gold: 45 100% 51%;
+
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -99,5 +105,65 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* MPL Gaming Gradients and Animations */
+@layer utilities {
+  .gradient-mpl-primary {
+    background: linear-gradient(135deg, hsl(var(--mpl-red)) 0%, hsl(var(--mpl-orange)) 100%);
+  }
+  
+  .gradient-mpl-secondary {
+    background: linear-gradient(135deg, hsl(var(--mpl-purple)) 0%, hsl(var(--mpl-blue)) 100%);
+  }
+  
+  .gradient-mpl-dark {
+    background: linear-gradient(135deg, hsl(var(--mpl-dark)) 0%, hsl(var(--mpl-dark-light)) 100%);
+  }
+  
+  .gradient-mpl-success {
+    background: linear-gradient(135deg, hsl(var(--mpl-green)) 0%, hsl(var(--mpl-blue)) 100%);
+  }
+
+  .text-mpl-red {
+    color: hsl(var(--mpl-red));
+  }
+  
+  .text-mpl-gold {
+    color: hsl(var(--mpl-gold));
+  }
+  
+  .bg-mpl-red {
+    background-color: hsl(var(--mpl-red));
+  }
+  
+  .bg-mpl-dark {
+    background-color: hsl(var(--mpl-dark));
+  }
+  
+  .border-mpl-red {
+    border-color: hsl(var(--mpl-red));
+  }
+
+  .glow-mpl {
+    box-shadow: 0 0 20px hsl(var(--mpl-red) / 0.3);
+  }
+  
+  .glow-mpl-strong {
+    box-shadow: 0 0 30px hsl(var(--mpl-red) / 0.5);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--mpl-red) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--mpl-red) / 0.6);
   }
 }

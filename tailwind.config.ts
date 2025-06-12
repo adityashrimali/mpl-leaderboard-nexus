@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				mpl: {
+					red: 'hsl(var(--mpl-red))',
+					'red-dark': 'hsl(var(--mpl-red-dark))',
+					'red-light': 'hsl(var(--mpl-red-light))',
+					orange: 'hsl(var(--mpl-orange))',
+					purple: 'hsl(var(--mpl-purple))',
+					blue: 'hsl(var(--mpl-blue))',
+					green: 'hsl(var(--mpl-green))',
+					dark: 'hsl(var(--mpl-dark))',
+					'dark-light': 'hsl(var(--mpl-dark-light))',
+					gold: 'hsl(var(--mpl-gold))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +97,20 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--mpl-red) / 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--mpl-red) / 0.6)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
 			}
 		}
 	},
