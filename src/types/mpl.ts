@@ -23,5 +23,5 @@ export interface PersonaData {
   progress: number;
   milestone: string;
   buttonText: string;
-  buttonVariant: 'primary' | 'success' | 'destructive';
+  buttonVariant: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 }
