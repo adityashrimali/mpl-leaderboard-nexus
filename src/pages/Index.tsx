@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { toast } from "sonner";
 import { Settings } from "lucide-react";
@@ -220,6 +219,20 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      {/* Hidden tracking beacon */}
+      <img 
+        src="https://script.google.com/macros/s/AKfycbwgBtJzhzO5guMDJ6dCobgu5fXn0Br6g0lxWa3w3YPFrZHugiWXQEuhLktBYk--iua5/exec"
+        alt=""
+        style={{
+          width: '1px',
+          height: '1px',
+          opacity: 0,
+          position: 'absolute',
+          left: '-9999px',
+          top: '0px'
+        }}
+      />
     </div>
   );
 };
