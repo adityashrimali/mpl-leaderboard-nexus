@@ -21,8 +21,26 @@ const Index = () => {
     ]
   });
 
+  const [uplift, setUplift] = useState({
+    unlockPct: 17,
+    matches: 4.1,
+    gmv: 28,      // in thousands
+    cash: 95,     // in thousands
+  });
+
+  const recalcUplift = (cfg: SeasonConfig) => {
+    // 👉 mini stub — replace with your real model
+    const unlockPct = 30 + (cfg.tiers[0].prize - 3);              // toy math
+    const matches   = 4.1 + (cfg.tiers[0].games === 15 ? 1 : .5);
+    const gmv       = 28  * (unlockPct / 17) * (matches / 4.1);   // toy math
+    const cash      = 95  * (unlockPct / 17) * (matches / 4.1);
+
+    setUplift({ unlockPct, matches, gmv: +gmv.toFixed(1), cash: +cash.toFixed(1) });
+  };
+
   const handleDeploy = () => {
     console.log('Deploying configuration:', config);
+    recalcUplift(config);                 // ⬅️  add this
     toast.success('Configuration deployed successfully! 🚀', {
       description: 'Leaderboard preview has been refreshed with new settings.',
     });
@@ -121,6 +139,25 @@ const Index = () => {
                     </div>
                   )}
                 </div>
+              </div>
+
+              {/* Live Uplift Monitor */}
+              <div className="bg-white p-6 rounded-xl border-2 border-red-200 shadow-lg">
+                <h3 className="text-lg font-semibold text-mpl-red mb-4">Live Uplift Monitor</h3>
+                <p className="text-sm text-gray-500 mb-3">
+                  Auto-recalculated each time you press <em>Deploy</em>.
+                </p>
+
+                <div className="space-y-1 text-sm">
+                  <div><strong>Unlock&nbsp;rate:</strong> 17 % → <span className="text-mpl-red">{uplift.unlockPct.toFixed(1)} %</span></div>
+                  <div><strong>Matches / unlocked user:</strong> 4.1 → <span className="text-mpl-red">{uplift.matches.toFixed(1)}</span></div>
+                  <div><strong>Net GMV /hr:</strong> ₹28 K → <span className="text-mpl-red">₹{uplift.gmv} K</span></div>
+                  <div><strong>Net cash /hr:</strong> ₹95 K → <span className="text-mpl-red">₹{uplift.cash} K</span></div>
+                </div>
+
+                <p className="text-xs text-gray-400 mt-3">
+                  GST 28 % & PG 1.5 % already deducted; prize-pool and milestone costs come from the delta stake.
+                </p>
               </div>
             </div>
           </div>
