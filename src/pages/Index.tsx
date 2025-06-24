@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { toast } from "sonner";
+import { Settings } from "lucide-react";
 import MPLHeader from "@/components/MPLHeader";
 import ConfigPanel from "@/components/ConfigPanel";
 import PersonaTabs from "@/components/PersonaTabs";
@@ -27,34 +29,22 @@ const Index = () => {
     cash: 95,     // in thousands
   });
 
-  const recalcUplift = (cfg: SeasonConfig) => {
-    // baselines
-    const BASE_UNLOCK = 17;
-    const BASE_MATCH  = 4.1;
-    const BASE_PRIZE  = 3;   // %
-    const BASE_GAMES  = 15;
+  const [upliftKnobs, setUpliftKnobs] = useState({
+    unlockPct: 30,      // V1 default
+    matchDelta: 1       // +1 game per unlocked user
+  });
 
-    // read tier 0 (₹0-9) because it has the widest audience
-    const t0 = cfg.tiers[0];
+  const recalcUplift = (cfg: SeasonConfig, knobs: typeof upliftKnobs) => {
+    const unlockPct = knobs.unlockPct;
+    const matches = 4.1 + knobs.matchDelta;
 
-    // unlock % rises if prize pool % goes up OR milestone frequency shortens
-    const unlockPct = BASE_UNLOCK
-      + (t0.prize - BASE_PRIZE) * 2         // +2 pp per extra %
-      + ((BASE_GAMES - t0.games) * 1.5);    // +1.5 pp per 1 game sooner
-
-    // matches rise if milestone is easier or reward bigger
-    const rewardFactor = t0.reward / 5;     // baseline reward=5
-    const matchDelta = (BASE_GAMES - t0.games)/5 + (rewardFactor - 1)*0.2;
-
-    const matches = BASE_MATCH + matchDelta;
-    
-    // calculate GMV and cash based on new behavioral metrics
-    const gmv = 28 * (unlockPct / BASE_UNLOCK) * (matches / BASE_MATCH);
-    const cash = 95 * (unlockPct / BASE_UNLOCK) * (matches / BASE_MATCH);
+    const gmvMultiplier = (unlockPct / 17) * (matches / 4.1);
+    const gmv = 28 * gmvMultiplier;   // in ₹K
+    const cash = 95 * gmvMultiplier;   // in ₹K
 
     setUplift({ 
-      unlockPct: +unlockPct.toFixed(1), 
-      matches: +matches.toFixed(1), 
+      unlockPct, 
+      matches, 
       gmv: +gmv.toFixed(1), 
       cash: +cash.toFixed(1) 
     });
@@ -62,7 +52,7 @@ const Index = () => {
 
   const handleDeploy = () => {
     console.log('Deploying configuration:', config);
-    recalcUplift(config);                 // ⬅️  add this
+    recalcUplift(config, upliftKnobs);
     toast.success('Configuration deployed successfully! 🚀', {
       description: 'Leaderboard preview has been refreshed with new settings.',
     });
@@ -78,11 +68,21 @@ const Index = () => {
       <div className="max-w-7xl mx-auto space-y-8">
         <MPLHeader />
         
-        <ConfigPanel 
-          config={config}
-          onConfigChange={setConfig}
-          onDeploy={handleDeploy}
-        />
+        {/* INTERNAL - Season Configuration */}
+        <div className="bg-slate-50 rounded-xl border-l-4 border-mpl-red shadow-sm">
+          <div className="p-6">
+            <div className="flex items-center mb-4">
+              <Settings className="w-5 h-5 text-mpl-red mr-2" />
+              <h2 className="text-xl font-semibold text-mpl-red">Season Configuration</h2>
+              <span className="ml-auto text-xs text-gray-500 font-medium">INTERNAL</span>
+            </div>
+            <ConfigPanel 
+              config={config}
+              onConfigChange={setConfig}
+              onDeploy={handleDeploy}
+            />
+          </div>
+        </div>
         
         <div className="space-y-6">
           <div>
@@ -163,22 +163,57 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Live Uplift Monitor */}
-              <div className="bg-white p-6 rounded-xl border-2 border-red-200 shadow-lg">
-                <h3 className="text-lg font-semibold text-mpl-red mb-4">Live Uplift Monitor</h3>
-                <p className="text-sm text-gray-500 mb-3">
-                  Auto-recalculated each time you press <em>Deploy</em>.
-                </p>
+              {/* INTERNAL – Uplift Monitor & Knobs */}
+              <div className="bg-slate-50 p-6 rounded-xl border-l-4 border-mpl-red shadow-sm">
+                <div className="flex items-center mb-4">
+                  <Settings className="w-5 h-5 text-mpl-red mr-2" />
+                  <h3 className="text-lg font-semibold text-mpl-red">Uplift Monitor</h3>
+                  <span className="ml-auto text-xs text-gray-500 font-medium">INTERNAL</span>
+                </div>
 
-                <div className="space-y-1 text-sm">
-                  <div><strong>Unlock&nbsp;rate:</strong> 17 % → <span className="text-mpl-red">{uplift.unlockPct.toFixed(1)} %</span></div>
-                  <div><strong>Matches / unlocked user:</strong> 4.1 → <span className="text-mpl-red">{uplift.matches.toFixed(1)}</span></div>
-                  <div><strong>Net GMV /hr:</strong> ₹28 K → <span className="text-mpl-red">₹{uplift.gmv} K</span></div>
-                  <div><strong>Net cash /hr:</strong> ₹95 K → <span className="text-mpl-red">₹{uplift.cash} K</span></div>
+                {/* knobs */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <label className="text-xs text-gray-600 block mb-1">Unlock % V1</label>
+                    <input 
+                      type="number" 
+                      min={17} 
+                      max={100}
+                      className="w-full border border-gray-300 rounded px-2 py-1 text-center text-sm"
+                      value={upliftKnobs.unlockPct}
+                      onChange={e => setUpliftKnobs({...upliftKnobs, unlockPct: +e.target.value})} 
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-600 block mb-1">Match Δ (+)</label>
+                    <input 
+                      type="number" 
+                      step={0.1} 
+                      min={0}
+                      className="w-full border border-gray-300 rounded px-2 py-1 text-center text-sm"
+                      value={upliftKnobs.matchDelta}
+                      onChange={e => setUpliftKnobs({...upliftKnobs, matchDelta: +e.target.value})} 
+                    />
+                  </div>
+                </div>
+
+                {/* recalc button */}
+                <button
+                  className="mb-4 px-3 py-1 text-sm border border-mpl-red text-mpl-red rounded hover:bg-mpl-red hover:text-white transition-colors"
+                  onClick={() => recalcUplift(config, upliftKnobs)}>
+                  Recalculate
+                </button>
+
+                {/* live numbers */}
+                <div className="space-y-1 text-sm leading-5">
+                  <div><strong>Unlock rate:</strong> 17 % → <span className="text-mpl-red">{uplift.unlockPct.toFixed(1)} %</span></div>
+                  <div><strong>Matches / unlocked:</strong> 4.1 → <span className="text-mpl-red">{uplift.matches.toFixed(1)}</span></div>
+                  <div><strong>Net GMV / hr:</strong> ₹28 K → <span className="text-mpl-red">₹{uplift.gmv} K</span></div>
+                  <div><strong>Net cash / hr:</strong> ₹95 K → <span className="text-mpl-red">₹{uplift.cash} K</span></div>
                 </div>
 
                 <p className="text-xs text-gray-400 mt-3">
-                  GST 28 % & PG 1.5 % already deducted; prize-pool and milestone costs come from the delta stake.
+                  GST 28 % & PG 1.5 % deducted. Prize-pool + milestones funded from delta stake.
                 </p>
               </div>
             </div>
