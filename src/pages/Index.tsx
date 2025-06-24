@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { toast } from "sonner";
 import MPLHeader from "@/components/MPLHeader";
@@ -29,13 +28,36 @@ const Index = () => {
   });
 
   const recalcUplift = (cfg: SeasonConfig) => {
-    // 👉 mini stub — replace with your real model
-    const unlockPct = 30 + (cfg.tiers[0].prize - 3);              // toy math
-    const matches   = 4.1 + (cfg.tiers[0].games === 15 ? 1 : .5);
-    const gmv       = 28  * (unlockPct / 17) * (matches / 4.1);   // toy math
-    const cash      = 95  * (unlockPct / 17) * (matches / 4.1);
+    // baselines
+    const BASE_UNLOCK = 17;
+    const BASE_MATCH  = 4.1;
+    const BASE_PRIZE  = 3;   // %
+    const BASE_GAMES  = 15;
 
-    setUplift({ unlockPct, matches, gmv: +gmv.toFixed(1), cash: +cash.toFixed(1) });
+    // read tier 0 (₹0-9) because it has the widest audience
+    const t0 = cfg.tiers[0];
+
+    // unlock % rises if prize pool % goes up OR milestone frequency shortens
+    const unlockPct = BASE_UNLOCK
+      + (t0.prize - BASE_PRIZE) * 2         // +2 pp per extra %
+      + ((BASE_GAMES - t0.games) * 1.5);    // +1.5 pp per 1 game sooner
+
+    // matches rise if milestone is easier or reward bigger
+    const rewardFactor = t0.reward / 5;     // baseline reward=5
+    const matchDelta = (BASE_GAMES - t0.games)/5 + (rewardFactor - 1)*0.2;
+
+    const matches = BASE_MATCH + matchDelta;
+    
+    // calculate GMV and cash based on new behavioral metrics
+    const gmv = 28 * (unlockPct / BASE_UNLOCK) * (matches / BASE_MATCH);
+    const cash = 95 * (unlockPct / BASE_UNLOCK) * (matches / BASE_MATCH);
+
+    setUplift({ 
+      unlockPct: +unlockPct.toFixed(1), 
+      matches: +matches.toFixed(1), 
+      gmv: +gmv.toFixed(1), 
+      cash: +cash.toFixed(1) 
+    });
   };
 
   const handleDeploy = () => {
