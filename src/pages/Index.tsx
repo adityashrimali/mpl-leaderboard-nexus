@@ -17,10 +17,30 @@ const Index = () => {
         {/* Feature Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="leaderboards">Leaderboards</TabsTrigger>
-            <TabsTrigger value="events">Events</TabsTrigger>
-            <TabsTrigger value="spins">Spins & Slots</TabsTrigger>
-            <TabsTrigger value="battlepass">Battle Pass</TabsTrigger>
+            <TabsTrigger 
+              value="leaderboards" 
+              className="data-[state=active]:border-b-2 data-[state=active]:border-rmg-red data-[state=active]:shadow-lg data-[state=active]:shadow-rmg-red/20"
+            >
+              Leaderboards
+            </TabsTrigger>
+            <TabsTrigger 
+              value="events"
+              className="data-[state=active]:border-b-2 data-[state=active]:border-rmg-purple data-[state=active]:shadow-lg data-[state=active]:shadow-rmg-purple/20"
+            >
+              Events
+            </TabsTrigger>
+            <TabsTrigger 
+              value="spins"
+              className="data-[state=active]:border-b-2 data-[state=active]:border-rmg-blue data-[state=active]:shadow-lg data-[state=active]:shadow-rmg-blue/20"
+            >
+              Spins & Slots
+            </TabsTrigger>
+            <TabsTrigger 
+              value="battlepass"
+              className="data-[state=active]:border-b-2 data-[state=active]:border-rmg-gold data-[state=active]:shadow-lg data-[state=active]:shadow-rmg-gold/20"
+            >
+              Battle Pass
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="leaderboards" className="mt-8">

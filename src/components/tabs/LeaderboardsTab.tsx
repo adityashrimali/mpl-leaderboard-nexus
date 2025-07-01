@@ -7,6 +7,7 @@ import PersonaTabs from "@/components/shared/PersonaTabs";
 import LiveStatsDashboard from "@/components/shared/LiveStatsDashboard";
 import PersonaInsights from "@/components/shared/PersonaInsights";
 import InternalPanel from "@/components/shared/InternalPanel";
+import NetProfitPanel from "@/components/shared/NetProfitPanel";
 
 const LeaderboardsTab = () => {
   const [activePersona, setActivePersona] = useState<Persona>('whale');
@@ -74,6 +75,12 @@ const LeaderboardsTab = () => {
         />
       </InternalPanel>
       
+      {/* Top Stats and Profit Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <LiveStatsDashboard />
+        <NetProfitPanel feature="leaderboards" config={config} />
+      </div>
+      
       <div className="space-y-6">
         <div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-2">
@@ -98,7 +105,6 @@ const LeaderboardsTab = () => {
           </div>
           
           <div className="lg:col-span-1 xl:col-span-2 space-y-4">
-            <LiveStatsDashboard />
             <PersonaInsights activePersona={activePersona} />
 
             {/* Uplift Monitor */}

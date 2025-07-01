@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EventConfig, Challenge } from "@/types/rmg";
 import { Calendar, Trophy } from "lucide-react";
@@ -54,30 +52,28 @@ const EventConfigPanel = ({ config, onConfigChange, onDeploy }: EventConfigPanel
           </div>
           <div>
             <Label htmlFor="theme">Theme</Label>
-            <Select value={config.theme} onValueChange={(value) => updateField('theme', value)}>
-              <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Select theme" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="diwali">Diwali</SelectItem>
-                <SelectItem value="weekly">Weekly</SelectItem>
-                <SelectItem value="monthly">Monthly</SelectItem>
-                <SelectItem value="seasonal">Seasonal</SelectItem>
-              </SelectContent>
-            </Select>
+            <select 
+              className="w-full mt-1 border border-gray-300 rounded-md px-3 py-2 text-sm"
+              value={config.theme}
+              onChange={(e) => updateField('theme', e.target.value)}
+            >
+              <option value="diwali">Diwali</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="seasonal">Seasonal</option>
+            </select>
           </div>
           <div>
             <Label htmlFor="schedule">Schedule</Label>
-            <Select value={config.schedule} onValueChange={(value: any) => updateField('schedule', value)}>
-              <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Select schedule" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="daily">Daily</SelectItem>
-                <SelectItem value="weekly">Weekly</SelectItem>
-                <SelectItem value="monthly">Monthly</SelectItem>
-              </SelectContent>
-            </Select>
+            <select 
+              className="w-full mt-1 border border-gray-300 rounded-md px-3 py-2 text-sm"
+              value={config.schedule}
+              onChange={(e) => updateField('schedule', e.target.value)}
+            >
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
           </div>
           <div>
             <Label htmlFor="prizePool">Prize Pool %</Label>
