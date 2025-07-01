@@ -1,4 +1,3 @@
-
 import { Persona } from "@/types/mpl";
 import { Crown, Target, TrendingUp } from "lucide-react";
 
