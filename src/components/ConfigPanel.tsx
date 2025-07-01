@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Rocket, Database } from "lucide-react";
-import { SeasonConfig, TierConfig } from "@/types/mpl";
+import { SeasonConfig, TierConfig } from "@/types/rmg";
 
 interface ConfigPanelProps {
   config: SeasonConfig;
@@ -34,9 +34,9 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
   };
 
   return (
-    <Card className="mb-8 border-2 border-mpl-red/20 shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-mpl-red/5 to-mpl-orange/5">
-        <CardTitle className="flex items-center space-x-2 text-mpl-red">
+        <Card className="mb-8 border-2 border-rmg-red/20 shadow-lg">
+      <CardHeader className="bg-gradient-to-r from-rmg-red/5 to-rmg-orange/5">
+        <CardTitle className="flex items-center space-x-2 text-rmg-red">
           <Database className="h-6 w-6" />
           <span>Season Configuration</span>
         </CardTitle>
@@ -77,7 +77,7 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border border-gray-200 rounded-lg overflow-hidden">
             <thead>
-              <tr className="bg-gradient-to-r from-mpl-red/10 to-mpl-orange/10">
+              <tr className="bg-gradient-to-r from-rmg-red/10 to-rmg-orange/10">
                 <th className="border border-gray-200 p-3 text-left font-semibold">Tier</th>
                 <th className="border border-gray-200 p-3 text-left font-semibold">Min ₹</th>
                 <th className="border border-gray-200 p-3 text-left font-semibold">Max ₹</th>
@@ -89,7 +89,7 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
             <tbody>
               {config.tiers.map((tier, index) => (
                 <tr key={index} className="hover:bg-gray-50 transition-colors">
-                  <td className="border border-gray-200 p-3 font-medium text-mpl-red">{tier.tier}</td>
+                  <td className="border border-gray-200 p-3 font-medium text-rmg-red">{tier.tier}</td>
                   <td className="border border-gray-200 p-2">
                     <Input
                       type="number"
@@ -139,7 +139,7 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
         <div className="flex items-center justify-between mt-6">
           <Button 
             onClick={onDeploy}
-            className="gradient-mpl-primary text-white hover:opacity-90 transition-opacity flex items-center space-x-2 px-6 py-3 glow-mpl"
+            className="gradient-rmg-primary text-white hover:opacity-90 transition-opacity flex items-center space-x-2 px-6 py-3 glow-rmg"
           >
             <Rocket className="h-5 w-5" />
             <span>Deploy Config → Refresh Preview</span>

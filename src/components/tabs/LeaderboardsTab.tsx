@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { Persona, SeasonConfig } from "@/types/mpl";
+import { Persona, SeasonConfig } from "@/types/rmg";
 import ConfigPanel from "@/components/ConfigPanel";
 import LeaderboardPreview from "@/components/LeaderboardPreview";
 import PersonaTabs from "@/components/shared/PersonaTabs";

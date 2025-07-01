@@ -1,4 +1,4 @@
-import { Persona } from "@/types/mpl";
+import { Persona } from "@/types/rmg";
 import { Crown, Target, TrendingUp } from "lucide-react";
 
 interface PersonaTabsProps {
@@ -26,7 +26,7 @@ const PersonaTabs = ({ activePersona, onPersonaChange }: PersonaTabsProps) => {
             className={`
               flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200
               ${isActive 
-                ? 'gradient-mpl-primary text-white shadow-lg glow-mpl transform scale-105' 
+                ? 'gradient-rmg-primary text-white shadow-lg glow-rmg transform scale-105' 
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
               }
             `}

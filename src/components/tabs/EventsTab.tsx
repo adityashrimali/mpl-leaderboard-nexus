@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Persona } from "@/types/mpl";
+import { Persona } from "@/types/rmg";
 import PersonaTabs from "@/components/shared/PersonaTabs";
 import LiveStatsDashboard from "@/components/shared/LiveStatsDashboard";
 import PersonaInsights from "@/components/shared/PersonaInsights";

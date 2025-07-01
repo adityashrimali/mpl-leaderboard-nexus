@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Persona, SeasonConfig, PersonaData } from "@/types/mpl";
+import { Persona, SeasonConfig, PersonaData } from "@/types/rmg";
 import { Trophy, Star, Target } from "lucide-react";
 
 interface LeaderboardPreviewProps {
@@ -98,11 +98,11 @@ const LeaderboardPreview = ({ persona, config }: LeaderboardPreviewProps) => {
   const getGradientClass = () => {
     switch (persona) {
       case 'whale':
-        return 'gradient-mpl-primary';
+        return 'gradient-rmg-primary';
       case 'grinder':
-        return 'gradient-mpl-secondary';
+        return 'gradient-rmg-secondary';
       case 'roi':
-        return 'gradient-mpl-success';
+        return 'gradient-rmg-success';
       default:
         return 'gradient-mpl-primary';
     }
@@ -110,7 +110,7 @@ const LeaderboardPreview = ({ persona, config }: LeaderboardPreviewProps) => {
 
   return (
     <div className="space-y-6">
-      <Card className="border-2 border-mpl-red/20 shadow-xl hover:shadow-2xl transition-all duration-300 animate-pulse-glow">
+      <Card className="border-2 border-rmg-red/20 shadow-xl hover:shadow-2xl transition-all duration-300 animate-pulse-glow glow-rmg-whale">
         <CardHeader className={`${getGradientClass()} text-white rounded-t-lg`}>
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -146,17 +146,17 @@ const LeaderboardPreview = ({ persona, config }: LeaderboardPreviewProps) => {
               />
             </div>
             
-            <div className="bg-gradient-to-r from-mpl-red/10 to-mpl-orange/10 p-4 rounded-lg">
+            <div className="bg-gradient-to-r from-rmg-red/10 to-rmg-orange/10 p-4 rounded-lg">
               <p className="text-sm text-gray-600 font-medium">{personaData.milestone}</p>
             </div>
           </div>
           
           <Button 
             className={`
-              w-full py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 glow-mpl
-              ${personaData.buttonVariant === 'destructive' ? 'gradient-mpl-primary text-white' : ''}
-              ${personaData.buttonVariant === 'default' ? 'gradient-mpl-secondary text-white' : ''}
-              ${personaData.buttonVariant === 'secondary' ? 'gradient-mpl-success text-white' : ''}
+              w-full py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 glow-rmg
+              ${personaData.buttonVariant === 'destructive' ? 'gradient-rmg-primary text-white' : ''}
+              ${personaData.buttonVariant === 'default' ? 'gradient-rmg-secondary text-white' : ''}
+              ${personaData.buttonVariant === 'secondary' ? 'gradient-rmg-success text-white' : ''}
             `}
             variant={personaData.buttonVariant}
           >
@@ -165,15 +165,15 @@ const LeaderboardPreview = ({ persona, config }: LeaderboardPreviewProps) => {
           
           <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
             <div className="text-center">
-              <div className="text-2xl font-bold text-mpl-red">{tierConfig.prize}%</div>
+              <div className="text-2xl font-bold text-rmg-red">{tierConfig.prize}%</div>
               <div className="text-xs text-gray-500">Prize Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-mpl-red">{tierConfig.games}</div>
+              <div className="text-2xl font-bold text-rmg-red">{tierConfig.games}</div>
               <div className="text-xs text-gray-500">Milestone Games</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-mpl-red">₹{tierConfig.reward}</div>
+              <div className="text-2xl font-bold text-rmg-red">₹{tierConfig.reward}</div>
               <div className="text-xs text-gray-500">Milestone Reward</div>
             </div>
           </div>

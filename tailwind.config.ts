@@ -53,17 +53,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				mpl: {
-					red: 'hsl(var(--mpl-red))',
-					'red-dark': 'hsl(var(--mpl-red-dark))',
-					'red-light': 'hsl(var(--mpl-red-light))',
-					orange: 'hsl(var(--mpl-orange))',
-					purple: 'hsl(var(--mpl-purple))',
-					blue: 'hsl(var(--mpl-blue))',
-					green: 'hsl(var(--mpl-green))',
-					dark: 'hsl(var(--mpl-dark))',
-					'dark-light': 'hsl(var(--mpl-dark-light))',
-					gold: 'hsl(var(--mpl-gold))',
+				rmg: {
+					red: 'hsl(var(--rmg-red))',
+					'red-dark': 'hsl(var(--rmg-red-dark))',
+					'red-light': 'hsl(var(--rmg-red-light))',
+					orange: 'hsl(var(--rmg-orange))',
+					purple: 'hsl(var(--rmg-purple))',
+					blue: 'hsl(var(--rmg-blue))',
+					green: 'hsl(var(--rmg-green))',
+					dark: 'hsl(var(--rmg-dark))',
+					'dark-light': 'hsl(var(--rmg-dark-light))',
+					gold: 'hsl(var(--rmg-gold))',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -100,10 +100,10 @@ export default {
 				},
 				'pulse-glow': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px hsl(var(--mpl-red) / 0.3)'
+						boxShadow: '0 0 20px hsl(var(--rmg-red) / 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 40px hsl(var(--mpl-red) / 0.6)'
+						boxShadow: '0 0 40px hsl(var(--rmg-red) / 0.6)'
 					}
 				}
 			},

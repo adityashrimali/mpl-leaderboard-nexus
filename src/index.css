@@ -37,17 +37,17 @@
 
     --radius: 0.5rem;
 
-    /* MPL Gaming Colors */
-    --mpl-red: 349 86% 48%;
-    --mpl-red-dark: 349 86% 38%;
-    --mpl-red-light: 349 86% 58%;
-    --mpl-orange: 24 100% 50%;
-    --mpl-purple: 273 74% 58%;
-    --mpl-blue: 217 91% 60%;
-    --mpl-green: 142 71% 45%;
-    --mpl-dark: 240 10% 10%;
-    --mpl-dark-light: 240 8% 15%;
-    --mpl-gold: 45 100% 51%;
+    /* RMG Gaming Colors */
+    --rmg-red: 349 86% 48%;
+    --rmg-red-dark: 349 86% 38%;
+    --rmg-red-light: 349 86% 58%;
+    --rmg-orange: 24 100% 50%;
+    --rmg-purple: 273 74% 58%;
+    --rmg-blue: 217 91% 60%;
+    --rmg-green: 142 71% 45%;
+    --rmg-dark: 240 10% 10%;
+    --rmg-dark-light: 240 8% 15%;
+    --rmg-gold: 45 100% 51%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -108,62 +108,101 @@
   }
 }
 
-/* MPL Gaming Gradients and Animations */
+/* RMG Gaming Gradients and Animations */
 @layer utilities {
-  .gradient-mpl-primary {
-    background: linear-gradient(135deg, hsl(var(--mpl-red)) 0%, hsl(var(--mpl-orange)) 100%);
+  .gradient-rmg-primary {
+    background: linear-gradient(135deg, hsl(var(--rmg-red)) 0%, hsl(var(--rmg-orange)) 100%);
   }
   
-  .gradient-mpl-secondary {
-    background: linear-gradient(135deg, hsl(var(--mpl-purple)) 0%, hsl(var(--mpl-blue)) 100%);
+  .gradient-rmg-secondary {
+    background: linear-gradient(135deg, hsl(var(--rmg-purple)) 0%, hsl(var(--rmg-blue)) 100%);
   }
   
-  .gradient-mpl-dark {
-    background: linear-gradient(135deg, hsl(var(--mpl-dark)) 0%, hsl(var(--mpl-dark-light)) 100%);
+  .gradient-rmg-dark {
+    background: linear-gradient(135deg, hsl(var(--rmg-dark)) 0%, hsl(var(--rmg-dark-light)) 100%);
   }
   
-  .gradient-mpl-success {
-    background: linear-gradient(135deg, hsl(var(--mpl-green)) 0%, hsl(var(--mpl-blue)) 100%);
+  .gradient-rmg-success {
+    background: linear-gradient(135deg, hsl(var(--rmg-green)) 0%, hsl(var(--rmg-blue)) 100%);
   }
 
-  .text-mpl-red {
-    color: hsl(var(--mpl-red));
+  .text-rmg-red {
+    color: hsl(var(--rmg-red));
   }
   
-  .text-mpl-gold {
-    color: hsl(var(--mpl-gold));
+  .text-rmg-gold {
+    color: hsl(var(--rmg-gold));
   }
   
-  .bg-mpl-red {
-    background-color: hsl(var(--mpl-red));
+  .text-rmg-purple {
+    color: hsl(var(--rmg-purple));
   }
   
-  .bg-mpl-dark {
-    background-color: hsl(var(--mpl-dark));
+  .text-rmg-green {
+    color: hsl(var(--rmg-green));
   }
   
-  .border-mpl-red {
-    border-color: hsl(var(--mpl-red));
+  .bg-rmg-red {
+    background-color: hsl(var(--rmg-red));
+  }
+  
+  .bg-rmg-dark {
+    background-color: hsl(var(--rmg-dark));
+  }
+  
+  .border-rmg-red {
+    border-color: hsl(var(--rmg-red));
   }
 
-  .glow-mpl {
-    box-shadow: 0 0 20px hsl(var(--mpl-red) / 0.3);
+  .glow-rmg {
+    box-shadow: 0 0 20px hsl(var(--rmg-red) / 0.3);
   }
   
-  .glow-mpl-strong {
-    box-shadow: 0 0 30px hsl(var(--mpl-red) / 0.5);
+  .glow-rmg-whale {
+    box-shadow: 0 0 20px hsl(var(--rmg-red) / 0.4);
+  }
+  
+  .glow-rmg-grinder {
+    box-shadow: 0 0 20px hsl(var(--rmg-purple) / 0.4);
+  }
+  
+  .glow-rmg-roi {
+    box-shadow: 0 0 20px hsl(var(--rmg-green) / 0.4);
+  }
+  
+  .glow-rmg-strong {
+    box-shadow: 0 0 30px hsl(var(--rmg-red) / 0.5);
   }
 
   .animate-pulse-glow {
     animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  .spin-wheel {
+    animation: spin 6s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+  }
+
+  /* Tab highlighting */
+  .tab-active {
+    border-bottom: 3px solid hsl(var(--rmg-red));
+    box-shadow: 0 2px 8px hsl(var(--rmg-red) / 0.3);
+  }
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(var(--mpl-red) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--rmg-red) / 0.3);
   }
   50% {
-    box-shadow: 0 0 40px hsl(var(--mpl-red) / 0.6);
+    box-shadow: 0 0 40px hsl(var(--rmg-red) / 0.6);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(2160deg); /* 6 full rotations */
   }
 }

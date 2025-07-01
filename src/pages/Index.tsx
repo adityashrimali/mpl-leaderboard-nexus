@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MPLHeader from "@/components/MPLHeader";
+import RMGHeader from "@/components/RMGHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LeaderboardsTab from "@/components/tabs/LeaderboardsTab";
 import EventsTab from "@/components/tabs/EventsTab";
@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
       <div className="max-w-7xl mx-auto space-y-8">
-        <MPLHeader />
+        <RMGHeader />
         
         {/* Feature Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
