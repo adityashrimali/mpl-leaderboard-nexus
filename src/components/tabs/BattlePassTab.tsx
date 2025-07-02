@@ -13,18 +13,21 @@ const BattlePassTab = () => {
   const [activePersona, setActivePersona] = useState<Persona>('whale');
   const [config, setBattlePassConfig] = useState<BattlePassConfig>({
     seasonId: 'Season 1',
+    seasonName: 'Monsoon Madness',
     duration: 'monthly',
     premiumPrice: 199,
     annualDiscount: 20,
-    freeTier: [
-      { milestone: 1, reward: '₹10', value: 10, type: 'coins' },
-      { milestone: 2, reward: '₹5', value: 5, type: 'coins' },
-      { milestone: 3, reward: '₹15', value: 15, type: 'coins' }
-    ],
-    premiumTier: [
-      { milestone: 1, reward: '₹50', value: 50, type: 'coins' },
-      { milestone: 2, reward: '₹25', value: 25, type: 'coins' },
-      { milestone: 3, reward: '₹75', value: 75, type: 'coins' }
+    milestones: [
+      { tier: 1, freeReward: '₹10', premiumReward: '₹50' },
+      { tier: 2, freeReward: '₹5', premiumReward: '₹25' },
+      { tier: 3, freeReward: '₹15', premiumReward: '₹75' },
+      { tier: 4, freeReward: '₹20', premiumReward: '₹100' },
+      { tier: 5, freeReward: '₹25', premiumReward: '₹150' },
+      { tier: 6, freeReward: '₹30', premiumReward: '₹200' },
+      { tier: 7, freeReward: '₹35', premiumReward: '₹250' },
+      { tier: 8, freeReward: '₹40', premiumReward: '₹300' },
+      { tier: 9, freeReward: '₹45', premiumReward: '₹400' },
+      { tier: 10, freeReward: '₹50', premiumReward: '₹500' }
     ]
   });
 

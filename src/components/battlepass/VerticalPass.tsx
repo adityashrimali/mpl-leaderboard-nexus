@@ -43,26 +43,26 @@ const VerticalPass = ({ config, persona, currentProgress, isPremium }: VerticalP
               Free Track
             </h4>
             <div className="space-y-4">
-              {config.freeTier.map((reward, index) => (
+              {config.milestones.map((milestone, index) => (
                 <div
                   key={index}
                   className={`relative p-4 rounded-lg border-2 transition-all ${
-                    currentProgress >= reward.milestone
+                    currentProgress >= milestone.tier
                       ? 'bg-rmg-green/10 border-rmg-green'
                       : 'bg-gray-50 border-gray-200'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-full ${getRewardColor(reward.type)}`}>
-                        {getRewardIcon(reward.type)}
+                      <div className="p-2 rounded-full text-rmg-green">
+                        <Coins className="w-5 h-5" />
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">Level {reward.milestone}</div>
-                        <div className="text-xs text-gray-600">{reward.reward}</div>
+                        <div className="font-semibold text-sm">Tier {milestone.tier}</div>
+                        <div className="text-xs text-gray-600">{milestone.freeReward}</div>
                       </div>
                     </div>
-                    {currentProgress >= reward.milestone && (
+                    {currentProgress >= milestone.tier && (
                       <div className="w-6 h-6 bg-rmg-green rounded-full flex items-center justify-center">
                         <span className="text-white text-xs">✓</span>
                       </div>
@@ -86,11 +86,11 @@ const VerticalPass = ({ config, persona, currentProgress, isPremium }: VerticalP
               </div>
             )}
             <div className="space-y-4">
-              {config.premiumTier.map((reward, index) => (
+              {config.milestones.map((milestone, index) => (
                 <div
                   key={index}
                   className={`relative p-4 rounded-lg border-2 transition-all ${
-                    isPremium && currentProgress >= reward.milestone
+                    isPremium && currentProgress >= milestone.tier
                       ? 'bg-rmg-gold/10 border-rmg-gold'
                       : isPremium
                       ? 'bg-gray-50 border-gray-200'
@@ -104,15 +104,15 @@ const VerticalPass = ({ config, persona, currentProgress, isPremium }: VerticalP
                   )}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-full ${getRewardColor(reward.type)}`}>
-                        {getRewardIcon(reward.type)}
+                      <div className="p-2 rounded-full text-rmg-gold">
+                        <Star className="w-5 h-5" />
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">Level {reward.milestone}</div>
-                        <div className="text-xs text-gray-600">{reward.reward}</div>
+                        <div className="font-semibold text-sm">Tier {milestone.tier}</div>
+                        <div className="text-xs text-gray-600">{milestone.premiumReward}</div>
                       </div>
                     </div>
-                    {isPremium && currentProgress >= reward.milestone && (
+                    {isPremium && currentProgress >= milestone.tier && (
                       <div className="w-6 h-6 bg-rmg-gold rounded-full flex items-center justify-center">
                         <span className="text-white text-xs">✓</span>
                       </div>

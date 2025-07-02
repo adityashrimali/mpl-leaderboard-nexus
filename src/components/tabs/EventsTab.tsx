@@ -15,6 +15,7 @@ const EventsTab = () => {
     name: 'Diwali Challenge',
     theme: 'diwali',
     schedule: 'weekly',
+    active: true,
     prizePoolPct: 5.0,
     challenges: [
       { game: 'Ludo', targetWins: 5, nextTargets: [10, 15], rewardPct: 3.0 },

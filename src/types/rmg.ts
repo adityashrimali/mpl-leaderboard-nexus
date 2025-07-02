@@ -59,20 +59,19 @@ export interface SpinConfig {
 }
 
 // Battle Pass Types
-export interface BattlePassReward {
-  milestone: number;
-  reward: string;
-  value: number;
-  type: 'coins' | 'spin' | 'bonus' | 'multiplier';
+export interface Milestone {
+  tier: number;
+  freeReward: string;
+  premiumReward: string;
 }
 
 export interface BattlePassConfig {
   seasonId: string;
+  seasonName: string;
   duration: 'monthly' | 'quarterly';
   premiumPrice: number;
   annualDiscount: number;
-  freeTier: BattlePassReward[];
-  premiumTier: BattlePassReward[];
+  milestones: Milestone[];
 }
 
 // Persona defaults for calculations
