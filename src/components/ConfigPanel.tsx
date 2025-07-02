@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Rocket, Database } from "lucide-react";
 import { SeasonConfig, TierConfig } from "@/types/rmg";
+import HelpTooltip from "./shared/HelpTooltip";
 
 interface ConfigPanelProps {
   config: SeasonConfig;
@@ -53,7 +54,10 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
             />
           </div>
           <div>
-            <Label htmlFor="ttlTop" className="text-sm font-medium">Top TTL (seconds)</Label>
+            <div className="flex items-center space-x-1">
+              <Label htmlFor="ttlTop" className="text-sm font-medium">Top TTL (seconds)</Label>
+              <HelpTooltip content="Time To Live - How long top tier prizes remain active before expiring. Shorter TTL creates urgency." />
+            </div>
             <Input
               id="ttlTop"
               type="number"
@@ -63,7 +67,10 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
             />
           </div>
           <div>
-            <Label htmlFor="ttlOther" className="text-sm font-medium">Other TTL (seconds)</Label>
+            <div className="flex items-center space-x-1">
+              <Label htmlFor="ttlOther" className="text-sm font-medium">Other TTL (seconds)</Label>
+              <HelpTooltip content="Time To Live for lower tier prizes. Usually longer than top tier to maintain engagement across all player levels." />
+            </div>
             <Input
               id="ttlOther"
               type="number"
@@ -79,11 +86,26 @@ const ConfigPanel = ({ config, onConfigChange, onDeploy }: ConfigPanelProps) => 
             <thead>
               <tr className="bg-gradient-to-r from-rmg-red/10 to-rmg-orange/10">
                 <th className="border border-gray-200 p-3 text-left font-semibold">Tier</th>
-                <th className="border border-gray-200 p-3 text-left font-semibold">Min ₹</th>
-                <th className="border border-gray-200 p-3 text-left font-semibold">Max ₹</th>
-                <th className="border border-gray-200 p-3 text-left font-semibold">Prize %</th>
-                <th className="border border-gray-200 p-3 text-left font-semibold">Milestone Games</th>
-                <th className="border border-gray-200 p-3 text-left font-semibold">Milestone Reward ₹</th>
+                <th className="border border-gray-200 p-3 text-left font-semibold flex items-center space-x-1">
+                  <span>Min ₹</span>
+                  <HelpTooltip content="Minimum stake amount required to qualify for this tier's leaderboard" />
+                </th>
+                <th className="border border-gray-200 p-3 text-left font-semibold flex items-center space-x-1">
+                  <span>Max ₹</span>
+                  <HelpTooltip content="Maximum stake amount for this tier. Players above this move to higher tier." />
+                </th>
+                <th className="border border-gray-200 p-3 text-left font-semibold flex items-center space-x-1">
+                  <span>Prize %</span>
+                  <HelpTooltip content="Percentage of total prize pool allocated to this tier based on player volume" />
+                </th>
+                <th className="border border-gray-200 p-3 text-left font-semibold flex items-center space-x-1">
+                  <span>Milestone Games</span>
+                  <HelpTooltip content="Number of games required to unlock milestone rewards for this tier" />
+                </th>
+                <th className="border border-gray-200 p-3 text-left font-semibold flex items-center space-x-1">
+                  <span>Milestone Reward ₹</span>
+                  <HelpTooltip content="Cash reward given when player reaches milestone games in this tier" />
+                </th>
               </tr>
             </thead>
             <tbody>

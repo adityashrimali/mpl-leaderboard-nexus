@@ -5,6 +5,7 @@ import LeaderboardsTab from "@/components/tabs/LeaderboardsTab";
 import EventsTab from "@/components/tabs/EventsTab";
 import SpinsTab from "@/components/tabs/SpinsTab";
 import BattlePassTab from "@/components/tabs/BattlePassTab";
+import InstructionsPanel from "@/components/shared/InstructionsPanel";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("leaderboards");
@@ -13,6 +14,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
       <div className="max-w-7xl mx-auto space-y-8">
         <RMGHeader />
+        <InstructionsPanel />
         
         {/* Feature Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
